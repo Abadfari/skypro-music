@@ -1,4 +1,5 @@
 import Image from "next/image";
+import s from "./SideBar.module.css";
 
 const SideBar = () => {
   return (
@@ -13,8 +14,8 @@ const SideBar = () => {
       </div>
       <div className="sidebar__block">
         <div className="sidebar__list">
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+          <div className={s.sidebarItem}>
+            <a className={s.sidebarLink} href="#">
               <Image
                 className="sidebar__img"
                 src="/img/playlist01.png"
@@ -24,8 +25,8 @@ const SideBar = () => {
               />
             </a>
           </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+          <div className={s.sidebarItem}>
+            <a className={s.sidebarLink} href="#">
               <Image
                 className="sidebar__img"
                 src="/img/playlist02.png"
@@ -35,8 +36,8 @@ const SideBar = () => {
               />
             </a>
           </div>
-          <div className="sidebar__item">
-            <a className="sidebar__link" href="#">
+          <div className={s.sidebarItem}>
+            <a className={s.sidebarLink} href="#">
               <Image
                 className="sidebar__img"
                 src="/img/playlist03.png"

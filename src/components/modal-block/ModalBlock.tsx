@@ -1,8 +1,8 @@
 import Image from "next/image";
-import React from "react";
+import React, { FC, PropsWithChildren, ReactNode } from "react";
 import s from "./ModalBlock.module.css";
 
-const ModalBlock = ({ children }) => {
+const ModalBlock: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className={s.modalBlock}>
       <form className={s.modalFormLogin} action="#">

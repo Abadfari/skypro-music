@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Burger from "../burger/Burger";
 import Logo from "../logo/Logo";
 import NavMenu from "../nav-menu/NavMenu";
+import s from "./Nav.module.css";
 
 const Nav = () => {
   return (
-    <nav className="main__nav nav">
-      <div className="nav__logo logo">
+    <nav className={s.mainNav}>
+      <div className={s.navLogo}>
         <Logo width={113} height={17} />
       </div>
       <Burger />

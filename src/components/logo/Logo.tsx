@@ -1,6 +1,8 @@
 import Image from "next/image";
+import { FC } from "react";
 
-const Logo = ({ width, height }) => {
+type Props = { width: number; height: number };
+const Logo: FC<Props> = ({ width, height }) => {
   return (
     <Image
       className="logo__image"

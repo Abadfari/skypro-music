@@ -1,11 +1,13 @@
+import s from "./Search.module.css";
+
 const Search = () => {
   return (
-    <div className="centerblock__search search">
-      <svg className="search__svg">
+    <div className={s.centerblockSearch}>
+      <svg className={s.searchSvg}>
         <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
       </svg>
       <input
-        className="search__text"
+        className={s.searchText}
         type="search"
         placeholder="Поиск"
         name="search"
