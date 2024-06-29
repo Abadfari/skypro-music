@@ -16,4 +16,8 @@ function MainTracks() {
   );
 }
 
+// TODO: подключить треки из api
+
+// TODO: создать файлик error.tsx
+
 export default MainTracks;

@@ -1,8 +1,11 @@
 import s from "./Burger.module.css";
 
-const Burger = () => {
+type Props = {
+  handleMenu: () => void;
+};
+const Burger = ({ handleMenu }: Props) => {
   return (
-    <div className={s.navBurger}>
+    <div className={s.navBurger} onClick={handleMenu}>
       <span className={s.burgerLine}></span>
       <span className={s.burgerLine}></span>
       <span className={s.burgerLine}></span>

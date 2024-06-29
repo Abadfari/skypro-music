@@ -1,6 +1,11 @@
 import s from "./ModalInput.module.css";
 
-const ModalInput = ({ type, placeholder, name }) => {
+type Props = {
+  type: string;
+  name: string;
+  placeholder: string;
+};
+const ModalInput = ({ type, placeholder, name }: Props) => {
   return (
     <input
       className={s.modalInput}
