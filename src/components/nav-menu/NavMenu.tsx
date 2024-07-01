@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useState } from "react";
 import Burger from "../burger/Burger";
+import s from "./NavMenu.module.css";
 
 const NavMenu = () => {
   const [visible, setVisible] = useState(false);
@@ -12,20 +13,20 @@ const NavMenu = () => {
     <>
       <Burger handleMenu={handleMenu} />
       {visible && (
-        <div className="nav__menu menu">
-          <ul className="menu__list">
-            <li className="menu__item">
-              <a href="#" className="menu__link">
+        <div className={s.navMenu}>
+          <ul className={s.menuList}>
+            <li className={s.menuItem}>
+              <a href="#" className={s.menuLink}>
                 Главное
               </a>
             </li>
-            <li className="menu__item">
-              <a href="#" className="menu__link">
+            <li className={s.menuItem}>
+              <a href="#" className={s.menuLink}>
                 Мой плейлист
               </a>
             </li>
-            <li className="menu__item">
-              <a href="../signin.html" className="menu__link">
+            <li className={s.menuItem}>
+              <a href="../signin.html" className={s.menuLink}>
                 Войти
               </a>
             </li>

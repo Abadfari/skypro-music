@@ -1,21 +1,23 @@
-import Playlist from "../playlist/Playlist"
+import clsx from "clsx";
+import Playlist from "../playlist/Playlist";
+import s from "./PlaylistContent.module.css";
 
 const PlaylistContent = () => {
   return (
-    <div className="centerblock__content playlist-content">
-            <div className="content__title playlist-title">
-              <div className="playlist-title__col col01">Трек</div>
-              <div className="playlist-title__col col02">Исполнитель</div>
-              <div className="playlist-title__col col03">Альбом</div>
-              <div className="playlist-title__col col04">
-                <svg className="playlist-title__svg">
-                  <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-                </svg>
-              </div>
-            </div>
-            <Playlist/>
-          </div>
-  )
-}
+    <div className={s.centerblockContent}>
+      <div className={s.contentTitle}>
+        <div className={clsx(s.playlistTitleCol, s.col01)}>Трек</div>
+        <div className={clsx(s.playlistTitleCol, s.col02)}>Исполнитель</div>
+        <div className={clsx(s.playlistTitleCol, s.col03)}>Альбом</div>
+        <div className={clsx(s.playlistTitleCol, s.col04)}>
+          <svg className={s.playlistTitleSvg}>
+            <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+          </svg>
+        </div>
+      </div>
+      <Playlist />
+    </div>
+  );
+};
 
-export default PlaylistContent
+export default PlaylistContent;
