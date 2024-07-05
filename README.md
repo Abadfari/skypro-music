@@ -37,4 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
 
-<!-- TODO: написать API функцию по получению треков -->
+<!-- TODO: СРОЧНО ДОДЕЛАТЬ СТИЛИ!!! -->
+
+<!-- TODO: подключить треки в компонент  -->

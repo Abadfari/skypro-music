@@ -3,21 +3,21 @@ import s from "./SideBar.module.css";
 
 const SideBar = () => {
   return (
-    <div className="main__sidebar sidebar">
-      <div className="sidebar__personal">
-        <p className="sidebar__personal-name">Sergey.Ivanov</p>
-        <div className="sidebar__icon">
+    <div className={s.mainSidebar}>
+      <div className={s.sidebarPersonal}>
+        <p className={s.sidebarPersonalName}>Sergey.Ivanov</p>
+        <div className={s.sidebarIcon}>
           <svg>
             <use xlinkHref="img/icon/sprite.svg#logout"></use>
           </svg>
         </div>
       </div>
-      <div className="sidebar__block">
-        <div className="sidebar__list">
+      <div className={s.sidebarBlock}>
+        <div className={s.sidebarList}>
           <div className={s.sidebarItem}>
             <a className={s.sidebarLink} href="#">
               <Image
-                className="sidebar__img"
+                className={s.sidebarImg}
                 src="/img/playlist01.png"
                 alt="обложка плейлиста 'Плейлист дня'"
                 width={250}
@@ -28,7 +28,7 @@ const SideBar = () => {
           <div className={s.sidebarItem}>
             <a className={s.sidebarLink} href="#">
               <Image
-                className="sidebar__img"
+                className={s.sidebarImg}
                 src="/img/playlist02.png"
                 alt="обложка плейлиста '100 танцевальных хитов'"
                 width={250}
@@ -39,7 +39,7 @@ const SideBar = () => {
           <div className={s.sidebarItem}>
             <a className={s.sidebarLink} href="#">
               <Image
-                className="sidebar__img"
+                className={s.sidebarImg}
                 src="/img/playlist03.png"
                 alt="обложка плейлиста 'Инди заряд'"
                 width={250}

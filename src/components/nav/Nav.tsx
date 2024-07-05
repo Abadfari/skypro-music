@@ -9,7 +9,6 @@ const Nav = () => {
       <div className={s.navLogo}>
         <Logo width={113} height={17} />
       </div>
-      <Burger />
       <NavMenu />
     </nav>
   );
