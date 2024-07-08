@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import Playlist from "../playlist/Playlist";
 import s from "./PlaylistContent.module.css";
+import { TrackType } from "@/types";
 
-const PlaylistContent = () => {
+const PlaylistContent = ({ tracks }: { tracks: TrackType[] }) => {
   return (
     <div className={s.centerblockContent}>
       <div className={s.contentTitle}>
@@ -15,7 +16,7 @@ const PlaylistContent = () => {
           </svg>
         </div>
       </div>
-      <Playlist />
+      <Playlist tracks={tracks} />
     </div>
   );
 };
