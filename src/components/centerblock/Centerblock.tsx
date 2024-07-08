@@ -9,7 +9,7 @@ const Centerblock = ({ tracks }: { tracks: TrackType[] }) => {
     <div className={s.mainCenterblock}>
       <Search />
       <h2 className={s.centerblockH2}>Треки</h2>
-      <Filter />
+      <Filter tracks={tracks} />
       <PlaylistContent tracks={tracks} />
     </div>
   );
