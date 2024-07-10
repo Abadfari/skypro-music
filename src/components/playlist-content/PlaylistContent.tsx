@@ -3,7 +3,7 @@ import Playlist from "../playlist/Playlist";
 import s from "./PlaylistContent.module.css";
 import { TrackType } from "@/types";
 
-const PlaylistContent = ({ tracks }: { tracks: TrackType[] }) => {
+const PlaylistContent = ({ tracks, setCurrentTrack }: { tracks: TrackType[], setCurrentTrack: (param: TrackType) => void }) => {
   return (
     <div className={s.centerblockContent}>
       <div className={s.contentTitle}>
@@ -16,7 +16,7 @@ const PlaylistContent = ({ tracks }: { tracks: TrackType[] }) => {
           </svg>
         </div>
       </div>
-      <Playlist tracks={tracks} />
+      <Playlist setCurrentTrack={setCurrentTrack} tracks={tracks} />
     </div>
   );
 };

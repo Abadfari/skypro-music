@@ -2,11 +2,11 @@ import { TrackType } from "@/types";
 import Track from "../track/Track";
 import s from "./Playlist.module.css";
 
-const Playlist = ({ tracks }: { tracks: TrackType[] }) => {
+const Playlist = ({ tracks,setCurrentTrack }: { tracks: TrackType[], setCurrentTrack: (param: TrackType) => void }) => {
   return (
     <div className={s.contentPlaylist}>
       {tracks.map((track, index) => (
-        <Track {...track} key={index} />
+        <Track setCurrentTrack={() => setCurrentTrack(track)} {...track} key={index} />
       ))}
     </div>
   );
