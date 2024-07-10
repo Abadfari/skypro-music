@@ -16,7 +16,7 @@ const FilterList: FC<FilterListType> = ({
   isOpened,
 }) => {
   return (
-    <>
+    <div className={s.wrapperBtn}>
       <div
         onClick={() => handleFilterClick(title)}
         className={clsx(s.filterButton, s.btnText, {
@@ -26,13 +26,15 @@ const FilterList: FC<FilterListType> = ({
         {title}
       </div>
       {isOpened && (
-        <ul>
-          {list.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <div className={s.filterListSt}>
+          <ul className={s.filterList}>
+            {list.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
       )}
-    </>
+    </div>
   );
 };
 
