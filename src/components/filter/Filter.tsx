@@ -30,15 +30,17 @@ const Filter = ({ tracks }: { tracks: TrackType[] }) => {
   return (
     <div className={s.centerblockFilter}>
       <div className={s.filterTitle}>Искать по:</div>
-      {filters?.map((filter) => (
-        <FilterList
-          key={filter.title}
-          isOpened={activeFilter === filter.title}
-          handleFilterClick={handleFilterClick}
-          title={filter.title}
-          list={filter.list}
-        />
-      ))}
+      <div className={s.wrapperBtn}>
+        {filters?.map((filter) => (
+          <FilterList
+            key={filter.title}
+            isOpened={activeFilter === filter.title}
+            handleFilterClick={handleFilterClick}
+            title={filter.title}
+            list={filter.list}
+          />
+        ))}
+      </div>
     </div>
   );
 };

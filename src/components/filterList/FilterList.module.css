@@ -8,8 +8,8 @@
   padding: 6px 20px;
 }
 
-.filterButton:not(:last-child) {
-  margin-right: 10px;
+.wrapperBtn {
+  position: relative;
 }
 
 .btnText:hover {
@@ -28,4 +28,38 @@
   border-color: #ad61ff;
   color: #ad61ff;
   cursor: pointer;
+}
+
+.filterListSt {
+  margin-top: 10px;
+  position: absolute;
+  width: 248px;
+  height: 305px;
+  background-color: #313131;
+  border-radius: 12px;
+  padding: 34px;
+}
+
+.filterList::-webkit-scrollbar {
+  width: 4px; /* ширина скроллбара */
+}
+
+.filterList::-webkit-scrollbar-track {
+  background-color: #4b4949;
+  border-radius: 10px;
+
+  /* цвет фона трека скроллбара */
+}
+
+.filterList::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* цвет ползунка скроллбара */
+  border-radius: 10px; /* закругление углов ползунка */
+}
+
+.filterList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  height: 100%;
 }

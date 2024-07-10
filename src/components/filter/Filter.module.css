@@ -44,3 +44,9 @@
   color: #ad61ff;
   cursor: pointer;
 }
+
+.wrapperBtn {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
