@@ -31,6 +31,10 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
     setIsPlaying(!isPlaying);
   }
 
+  const handleClick = () => {
+    alert("Еще не реализовано");
+  };
+
   useEffect(() => {
     const ref = audioRef.current;
     function handleTimeUpdate() {
@@ -64,7 +68,7 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
         <div className={s.barPlayerBlock}>
           <div className={s.barPlayer}>
             <div className={s.playerControls}>
-              <div className={s.playerBtnPrev}>
+              <div className={s.playerBtnPrev} onClick={handleClick}>
                 <svg className={s.playerBtnPrevSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </svg>
@@ -78,7 +82,7 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
                   )}
                 </svg>
               </div>
-              <div className={s.playerBtnNext}>
+              <div className={s.playerBtnNext} onClick={handleClick}>
                 <svg className={s.playerBtnNextSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>
@@ -95,7 +99,10 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
                   )}
                 </svg>
               </div>
-              <div className={clsx(s.playerBtnShuffle, s.btnIcon)}>
+              <div
+                className={clsx(s.playerBtnShuffle, s.btnIcon)}
+                onClick={handleClick}
+              >
                 <svg className={s.playerBtnShuffleSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                 </svg>

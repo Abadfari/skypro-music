@@ -95,10 +95,20 @@
 
 .playerBtnPrev {
   margin-right: 23px;
+  transition: 0.2s ease;
+}
+
+.playerBtnPrev:hover {
+  transform: scale(1.2);
 }
 
 .playerBtnPlay {
   margin-right: 23px;
+  transition: 0.2s ease;
+}
+
+.playerBtnPlay:hover {
+  transform: scale(1.2);
 }
 
 .playerBtnPlaySvg {
@@ -110,6 +120,11 @@
 .playerBtnNext {
   margin-right: 28px;
   fill: #a53939;
+  transition: 0.2s ease;
+}
+
+.playerBtnNext:hover {
+  transform: scale(1.2);
 }
 
 .playerBtnNextSvg {
@@ -125,7 +140,6 @@
 
 .playerBtnRepeatSvg {
   width: 18px;
-  height: 12px;
   fill: transparent;
   stroke: #696969;
   display: block;
@@ -263,5 +277,3 @@
   fill: transparent;
   stroke: #696969;
 }
-
-
