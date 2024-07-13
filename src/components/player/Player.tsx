@@ -2,16 +2,48 @@
 
 import clsx from "clsx";
 import s from "./Player.module.css";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TrackType } from "@/types";
+import PlayerProgressBar from "../playerProgressBar/PlayerProgressBar";
+import { formatTrackTime } from "@/lib/formatTrackTime";
+import VolumeProgress from "../volumeProgress/VolumeProgress";
 
 const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoop, setIsLoop] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (audioRef.current) {
+      audioRef.current.currentTime = +event.target.value;
+    }
+  }
+
+  function toggleLoop() {
+    if (audioRef.current) {
+      setIsLoop(!isLoop);
+      audioRef.current.loop = !audioRef.current.loop;
+    }
+  }
 
   function playTrack() {
     setIsPlaying(!isPlaying);
   }
+
+  useEffect(() => {
+    const ref = audioRef.current;
+    function handleTimeUpdate() {
+      if (audioRef.current) setCurrentTime(audioRef.current.currentTime);
+    }
+    if (currentTrack) {
+      ref?.addEventListener("timeupdate", handleTimeUpdate);
+    }
+    return () => {
+      ref?.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, [currentTrack]);
+
   useEffect(() => {
     isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
   }, [isPlaying]);
@@ -19,7 +51,16 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
     <div className={s.bar}>
       <div className={s.barContent}>
         <audio ref={audioRef} src={currentTrack?.track_file}></audio>
-        <div className={s.barPlayerProgress}></div>
+        <div>
+          {formatTrackTime(Math.floor(currentTime))}/
+          {formatTrackTime(Math.floor(audioRef.current?.duration || 0))}
+        </div>
+        <PlayerProgressBar
+          max={audioRef.current?.duration || 0}
+          value={currentTime}
+          onChange={onChange}
+          step={0.01}
+        />
         <div className={s.barPlayerBlock}>
           <div className={s.barPlayer}>
             <div className={s.playerControls}>
@@ -42,9 +83,16 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>
               </div>
-              <div className={clsx(s.playerBtnRepeat, s.btnIcon)}>
+              <div
+                onClick={toggleLoop}
+                className={clsx(s.playerBtnRepeat, s.btnIcon)}
+              >
                 <svg className={s.playerBtnRepeatSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  {!isLoop ? (
+                    <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  ) : (
+                    <use xlinkHref="img/icon/sprite.svg#icon-repeat-active"></use>
+                  )}
                 </svg>
               </div>
               <div className={clsx(s.playerBtnShuffle, s.btnIcon)}>
@@ -87,22 +135,7 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
               </div>
             </div>
           </div>
-          <div className={s.barVolumeBlock}>
-            <div className={s.volumeContent}>
-              <div className={s.volumeImage}>
-                <svg className={s.volumeSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
-                </svg>
-              </div>
-              <div className={clsx(s.volumeProgress, s.btn)}>
-                <input
-                  className={clsx(s.volumeProgressLine, s.btn)}
-                  type="range"
-                  name="range"
-                />
-              </div>
-            </div>
-          </div>
+          <VolumeProgress audio={audioRef} />
         </div>
       </div>
     </div>
