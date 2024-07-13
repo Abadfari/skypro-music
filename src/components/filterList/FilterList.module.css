@@ -30,7 +30,7 @@
   cursor: pointer;
 }
 
-.filterListSt {
+.filterListStyles {
   margin-top: 10px;
   position: absolute;
   width: 248px;
@@ -62,4 +62,9 @@
   gap: 10px;
   overflow-y: scroll;
   height: 100%;
+}
+
+.filterListItem:hover {
+  text-decoration: underline #ad61ff;
+  color: #ad61ff;
 }

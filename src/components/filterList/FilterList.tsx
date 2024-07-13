@@ -26,10 +26,10 @@ const FilterList: FC<FilterListType> = ({
         {title}
       </div>
       {isOpened && (
-        <div className={s.filterListSt}>
+        <div className={s.filterListStyles}>
           <ul className={s.filterList}>
             {list.map((item) => (
-              <li key={item}>{item}</li>
+              <li className={s.filterListItem} key={item}>{item}</li>
             ))}
           </ul>
         </div>
