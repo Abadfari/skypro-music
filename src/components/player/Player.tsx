@@ -3,16 +3,27 @@
 import clsx from "clsx";
 import s from "./Player.module.css";
 import React, { useEffect, useRef, useState } from "react";
-import { TrackType } from "@/types";
 import PlayerProgressBar from "../playerProgressBar/PlayerProgressBar";
 import { formatTrackTime } from "@/lib/formatTrackTime";
 import VolumeProgress from "../volumeProgress/VolumeProgress";
+import { useAppDispatch, useAppSelector } from "@/store/store";
+import {
+  setIsPlaying,
+  setNextTrack,
+  setPrevTrack,
+  setShuffle,
+} from "@/store/features/playlistSlice";
 
-const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
+//TODO: для реализации автоматического переключения трека использовать события на audio, событие называется ended, прописать его внутри useEffect
+
+const Player = () => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isLoop, setIsLoop] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  const currentTrack = useAppSelector((state) => state.playlist.currentTrack);
+  const isPlaying = useAppSelector((state) => state.playlist.isPlaying);
+  const isShuffle = useAppSelector((state) => state.playlist.isShuffle);
+  const dispatch = useAppDispatch();
 
   function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (audioRef.current) {
@@ -28,7 +39,19 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
   }
 
   function playTrack() {
-    setIsPlaying(!isPlaying);
+    dispatch(setIsPlaying(!isPlaying));
+  }
+
+  function handleNextTrack() {
+    dispatch(setNextTrack());
+  }
+
+  function handlePrevTrack() {
+    dispatch(setPrevTrack());
+  }
+
+  function handleShuffleTrack() {
+    dispatch(setShuffle(!isShuffle));
   }
 
   const handleClick = () => {
@@ -68,7 +91,7 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
         <div className={s.barPlayerBlock}>
           <div className={s.barPlayer}>
             <div className={s.playerControls}>
-              <div className={s.playerBtnPrev} onClick={handleClick}>
+              <div className={s.playerBtnPrev} onClick={handlePrevTrack}>
                 <svg className={s.playerBtnPrevSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </svg>
@@ -82,7 +105,7 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
                   )}
                 </svg>
               </div>
-              <div className={s.playerBtnNext} onClick={handleClick}>
+              <div className={s.playerBtnNext} onClick={handleNextTrack}>
                 <svg className={s.playerBtnNextSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>
@@ -101,7 +124,7 @@ const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
               </div>
               <div
                 className={clsx(s.playerBtnShuffle, s.btnIcon)}
-                onClick={handleClick}
+                onClick={handleShuffleTrack}
               >
                 <svg className={s.playerBtnShuffleSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>

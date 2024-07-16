@@ -14,9 +14,7 @@ const SignUp = () => {
           name="password"
           placeholder="Повторите пароль"
         />
-        <ModalButton type="primary">
-          Зарегистрироваться
-        </ModalButton>
+        <ModalButton type="primary">Зарегистрироваться</ModalButton>
       </ModalBlock>
     </div>
   );
