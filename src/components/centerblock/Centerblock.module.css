@@ -14,7 +14,3 @@
   letter-spacing: -0.8px;
   margin-bottom: 45px;
 }
-
-.mainCenterblock::-webkit-scrollbar {
-  width: 10px; /* ширина скроллбара */
-}
