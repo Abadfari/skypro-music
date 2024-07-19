@@ -6,7 +6,7 @@ import { formatTrackTime } from "@/lib/formatTrackTime";
 import { useAppSelector } from "@/store/store";
 
 type Props = {
-  id: number;
+  _id: number;
   name: string;
   author: string;
   album: string;
@@ -15,7 +15,7 @@ type Props = {
 };
 
 const Track: FC<Props> = ({
-  id,
+  _id,
   name,
   author,
   album,
@@ -28,7 +28,7 @@ const Track: FC<Props> = ({
       <div className={s.playlistTrack}>
         <div className={s.trackTitle}>
           <div className={s.trackTitleImage}>
-            {currentTrack?.id === id ? (
+            {currentTrack?._id === _id ? (
               isPlaying ? (
                 <div
                   style={{

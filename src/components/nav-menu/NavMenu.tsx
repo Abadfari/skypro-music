@@ -2,6 +2,7 @@
 import { useCallback, useState } from "react";
 import Burger from "../burger/Burger";
 import s from "./NavMenu.module.css";
+import Link from "next/link";
 
 const NavMenu = () => {
   const [visible, setVisible] = useState(false);
@@ -16,19 +17,17 @@ const NavMenu = () => {
         <div className={s.navMenu}>
           <ul className={s.menuList}>
             <li className={s.menuItem}>
-              <a href="#" className={s.menuLink}>
+              <Link href="/" className={s.menuLink}>
                 Главное
-              </a>
+              </Link>
             </li>
             <li className={s.menuItem}>
-              <a href="#" className={s.menuLink}>
+              <Link href="/favorite" className={s.menuLink}>
                 Мой плейлист
-              </a>
+              </Link>
             </li>
             <li className={s.menuItem}>
-              <a href="../signin.html" className={s.menuLink}>
-                Войти
-              </a>
+              <button className={s.menuLink}>Войти</button>
             </li>
           </ul>
         </div>

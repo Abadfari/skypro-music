@@ -1,5 +1,5 @@
 export type TrackType = {
-  id: number;
+  _id: number;
   name: string;
   author: string;
   release_date: string;
@@ -17,4 +17,14 @@ type StaredUser = {
   first_name: string;
   last_name: string;
   email: string;
+};
+
+export type User = {
+  email: string;
+  username: string;
+};
+
+export type Token = {
+  refresh: string;
+  access: string;
 };
