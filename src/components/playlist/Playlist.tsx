@@ -1,14 +1,13 @@
+import { TrackType } from "@/types";
 import Track from "../track/Track";
 import s from "./Playlist.module.css";
 
-const Playlist = () => {
+const Playlist = ({ tracks }: { tracks: TrackType[] }) => {
   return (
     <div className={s.contentPlaylist}>
-      {Array(20)
-        .fill({})
-        .map((_, index) => (
-          <Track key={index} />
-        ))}
+      {tracks.map((track, index) => (
+        <Track {...track} key={index} />
+      ))}
     </div>
   );
 };

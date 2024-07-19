@@ -1,0 +1,70 @@
+.filterButton {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  border: 1px solid #ffffff;
+  border-radius: 60px;
+  padding: 6px 20px;
+}
+
+.wrapperBtn {
+  position: relative;
+}
+
+.btnText:hover {
+  border-color: #d9b6ff;
+  color: #d9b6ff;
+  cursor: pointer;
+}
+.btnText:active,
+.btnTextOpen {
+  border-color: #ad61ff;
+  color: #ad61ff;
+  cursor: pointer;
+}
+
+.btnTextOpen {
+  border-color: #ad61ff;
+  color: #ad61ff;
+  cursor: pointer;
+}
+
+.filterListStyles {
+  margin-top: 10px;
+  position: absolute;
+  width: 248px;
+  height: 305px;
+  background-color: #313131;
+  border-radius: 12px;
+  padding: 34px;
+}
+
+.filterList::-webkit-scrollbar {
+  width: 4px; /* ширина скроллбара */
+}
+
+.filterList::-webkit-scrollbar-track {
+  background-color: #4b4949;
+  border-radius: 10px;
+
+  /* цвет фона трека скроллбара */
+}
+
+.filterList::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* цвет ползунка скроллбара */
+  border-radius: 10px; /* закругление углов ползунка */
+}
+
+.filterList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.filterListItem:hover {
+  text-decoration: underline #ad61ff;
+  color: #ad61ff;
+}
