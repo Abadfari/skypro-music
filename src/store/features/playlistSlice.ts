@@ -24,6 +24,7 @@ const playlistSlice = createSlice({
   reducers: {
     setCurrentTrack: (state, action: PayloadAction<TrackType>) => {
       state.currentTrack = action.payload;
+      state.isPlaying = true;
     },
     setIsPlaying: (state, action: PayloadAction<boolean>) => {
       state.isPlaying = action.payload;
@@ -41,6 +42,7 @@ const playlistSlice = createSlice({
       const nextTrack = playlist[currentId + 1];
       if (nextTrack) {
         state.currentTrack = nextTrack;
+        state.isPlaying = true;
       }
     },
 

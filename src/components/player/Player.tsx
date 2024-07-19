@@ -2,7 +2,7 @@
 
 import clsx from "clsx";
 import s from "./Player.module.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import PlayerProgressBar from "../playerProgressBar/PlayerProgressBar";
 import { formatTrackTime } from "@/lib/formatTrackTime";
 import VolumeProgress from "../volumeProgress/VolumeProgress";
@@ -42,9 +42,9 @@ const Player = () => {
     dispatch(setIsPlaying(!isPlaying));
   }
 
-  function handleNextTrack() {
+  const handleNextTrack = useCallback(() => {
     dispatch(setNextTrack());
-  }
+  }, [dispatch]);
 
   function handlePrevTrack() {
     dispatch(setPrevTrack());
@@ -58,6 +58,10 @@ const Player = () => {
     alert("Еще не реализовано");
   };
 
+  // useEffect(() => {
+
+  // },[])
+
   useEffect(() => {
     const ref = audioRef.current;
     function handleTimeUpdate() {
@@ -65,15 +69,17 @@ const Player = () => {
     }
     if (currentTrack) {
       ref?.addEventListener("timeupdate", handleTimeUpdate);
+      ref?.addEventListener("ended", handleNextTrack);
     }
     return () => {
       ref?.removeEventListener("timeupdate", handleTimeUpdate);
+      ref?.removeEventListener("ended", handleNextTrack);
     };
-  }, [currentTrack]);
+  }, [currentTrack, handleNextTrack]);
 
   useEffect(() => {
     isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
-  }, [isPlaying]);
+  }, [isPlaying, currentTrack]);
   return (
     <div className={s.bar}>
       <div className={s.barContent}>
