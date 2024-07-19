@@ -30,23 +30,9 @@ const Track: FC<Props> = ({
           <div className={s.trackTitleImage}>
             {currentTrack?.id === id ? (
               isPlaying ? (
-                <div
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    backgroundColor: "purple",
-                  }}
-                ></div>
+                <div className={s.playingDot}></div>
               ) : (
-                <div
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    backgroundColor: "green",
-                  }}
-                ></div>
+                <div className={s.pauseDot}></div>
               )
             ) : (
               <svg className={s.trackTitleSvg}>

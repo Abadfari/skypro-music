@@ -14,8 +14,6 @@ import {
   setShuffle,
 } from "@/store/features/playlistSlice";
 
-//TODO: для реализации автоматического переключения трека использовать события на audio, событие называется ended, прописать его внутри useEffect
-
 const Player = () => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
   const [isLoop, setIsLoop] = useState(false);
@@ -58,10 +56,6 @@ const Player = () => {
     alert("Еще не реализовано");
   };
 
-  // useEffect(() => {
-
-  // },[])
-
   useEffect(() => {
     const ref = audioRef.current;
     function handleTimeUpdate() {
@@ -84,7 +78,7 @@ const Player = () => {
     <div className={s.bar}>
       <div className={s.barContent}>
         <audio ref={audioRef} src={currentTrack?.track_file}></audio>
-        <div>
+        <div className={s.currentTime}>
           {formatTrackTime(Math.floor(currentTime))}/
           {formatTrackTime(Math.floor(audioRef.current?.duration || 0))}
         </div>
