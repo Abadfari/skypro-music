@@ -1,5 +1,5 @@
 .btnIcon:hover svg {
-  fill: transparent;
+  fill: #acacac;
   stroke: #acacac;
   cursor: pointer;
 }
@@ -31,12 +31,6 @@
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-}
-
-.barPlayerProgress {
-  width: 100%;
-  height: 5px;
-  background: #2e2e2e;
 }
 
 .barPlayerBlock {
@@ -101,10 +95,20 @@
 
 .playerBtnPrev {
   margin-right: 23px;
+  transition: 0.2s ease;
+}
+
+.playerBtnPrev:hover {
+  transform: scale(1.2);
 }
 
 .playerBtnPlay {
   margin-right: 23px;
+  transition: 0.2s ease;
+}
+
+.playerBtnPlay:hover {
+  transform: scale(1.2);
 }
 
 .playerBtnPlaySvg {
@@ -116,6 +120,11 @@
 .playerBtnNext {
   margin-right: 28px;
   fill: #a53939;
+  transition: 0.2s ease;
+}
+
+.playerBtnNext:hover {
+  transform: scale(1.2);
 }
 
 .playerBtnNextSvg {
@@ -131,9 +140,7 @@
 
 .playerBtnRepeatSvg {
   width: 18px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
+  display: block;
 }
 
 .playerBtnShuffle {
@@ -267,51 +274,4 @@
   height: 13px;
   fill: transparent;
   stroke: #696969;
-}
-
-.barVolumeBlock {
-  width: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 92px 0 0;
-}
-
-.volumeContent {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: end;
-}
-
-.volumeImage {
-  width: 13px;
-  height: 18px;
-  margin-right: 17px;
-}
-
-.volumeSvg {
-  width: 13px;
-  height: 18px;
-  fill: transparent;
-}
-
-.volumeProgress {
-  width: 109px;
-}
-
-.volumeProgressLine {
-  width: 109px;
 }

@@ -1,35 +1,108 @@
+"use client";
+
 import clsx from "clsx";
 import s from "./Player.module.css";
+import React, { useEffect, useRef, useState } from "react";
+import { TrackType } from "@/types";
+import PlayerProgressBar from "../playerProgressBar/PlayerProgressBar";
+import { formatTrackTime } from "@/lib/formatTrackTime";
+import VolumeProgress from "../volumeProgress/VolumeProgress";
 
-const Player = () => {
+const Player = ({ currentTrack }: { currentTrack: TrackType | null }) => {
+  const audioRef = useRef<null | HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoop, setIsLoop] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
+    if (audioRef.current) {
+      audioRef.current.currentTime = +event.target.value;
+    }
+  }
+
+  function toggleLoop() {
+    if (audioRef.current) {
+      setIsLoop(!isLoop);
+      audioRef.current.loop = !audioRef.current.loop;
+    }
+  }
+
+  function playTrack() {
+    setIsPlaying(!isPlaying);
+  }
+
+  const handleClick = () => {
+    alert("Еще не реализовано");
+  };
+
+  useEffect(() => {
+    const ref = audioRef.current;
+    function handleTimeUpdate() {
+      if (audioRef.current) setCurrentTime(audioRef.current.currentTime);
+    }
+    if (currentTrack) {
+      ref?.addEventListener("timeupdate", handleTimeUpdate);
+    }
+    return () => {
+      ref?.removeEventListener("timeupdate", handleTimeUpdate);
+    };
+  }, [currentTrack]);
+
+  useEffect(() => {
+    isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
+  }, [isPlaying]);
   return (
     <div className={s.bar}>
       <div className={s.barContent}>
-        <div className={s.barPlayerProgress}></div>
+        <audio ref={audioRef} src={currentTrack?.track_file}></audio>
+        <div>
+          {formatTrackTime(Math.floor(currentTime))}/
+          {formatTrackTime(Math.floor(audioRef.current?.duration || 0))}
+        </div>
+        <PlayerProgressBar
+          max={audioRef.current?.duration || 0}
+          value={currentTime}
+          onChange={onChange}
+          step={0.01}
+        />
         <div className={s.barPlayerBlock}>
           <div className={s.barPlayer}>
             <div className={s.playerControls}>
-              <div className={s.playerBtnPrev}>
+              <div className={s.playerBtnPrev} onClick={handleClick}>
                 <svg className={s.playerBtnPrevSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </svg>
               </div>
-              <div className={clsx(s.playerBtnPlay, s.btn)}>
+              <div onClick={playTrack} className={clsx(s.playerBtnPlay, s.btn)}>
                 <svg className={s.playerBtnPlaySvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                  {!isPlaying ? (
+                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                  ) : (
+                    <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                  )}
                 </svg>
               </div>
-              <div className={s.playerBtnNext}>
+              <div className={s.playerBtnNext} onClick={handleClick}>
                 <svg className={s.playerBtnNextSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </svg>
               </div>
-              <div className={clsx(s.playerBtnRepeat, s.btnIcon)}>
+              <div
+                onClick={toggleLoop}
+                className={clsx(s.playerBtnRepeat, s.btnIcon)}
+              >
                 <svg className={s.playerBtnRepeatSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  {!isLoop ? (
+                    <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                  ) : (
+                    <use xlinkHref="img/icon/sprite.svg#icon-repeat-active"></use>
+                  )}
                 </svg>
               </div>
-              <div className={clsx(s.playerBtnShuffle, s.btnIcon)}>
+              <div
+                className={clsx(s.playerBtnShuffle, s.btnIcon)}
+                onClick={handleClick}
+              >
                 <svg className={s.playerBtnShuffleSvg}>
                   <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                 </svg>
@@ -45,12 +118,12 @@ const Player = () => {
                 </div>
                 <div className={s.trackPlayAuthor}>
                   <a className={s.trackPlayAuthorLink} href="http://">
-                    Ты та...
+                    {currentTrack?.author}
                   </a>
                 </div>
                 <div className={s.trackPlayAlbum}>
                   <a className={s.trackPlayAlbumLink} href="http://">
-                    Баста
+                    {currentTrack?.name}
                   </a>
                 </div>
               </div>
@@ -69,22 +142,7 @@ const Player = () => {
               </div>
             </div>
           </div>
-          <div className={s.barVolumeBlock}>
-            <div className={s.volumeContent}>
-              <div className={s.volumeImage}>
-                <svg className={s.volumeSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
-                </svg>
-              </div>
-              <div className={clsx(s.volumeProgress, s.btn)}>
-                <input
-                  className={clsx(s.volumeProgressLine, s.btn)}
-                  type="range"
-                  name="range"
-                />
-              </div>
-            </div>
-          </div>
+          <VolumeProgress audio={audioRef} />
         </div>
       </div>
     </div>

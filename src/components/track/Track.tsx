@@ -2,16 +2,24 @@ import { FC } from "react";
 import s from "./Track.module.css";
 import { formatTrackTime } from "@/lib/formatTrackTime";
 
+
 type Props = {
   name: string;
   author: string;
   album: string;
   duration_in_seconds: number;
+  setCurrentTrack: () => void;
 };
 
-const Track: FC<Props> = ({ name, author, album, duration_in_seconds }) => {
+const Track: FC<Props> = ({
+  name,
+  author,
+  album,
+  duration_in_seconds,
+  setCurrentTrack,
+}) => {
   return (
-    <div className={s.playlistItem}>
+    <div onClick={setCurrentTrack} className={s.playlistItem}>
       <div className={s.playlistTrack}>
         <div className={s.trackTitle}>
           <div className={s.trackTitleImage}>
