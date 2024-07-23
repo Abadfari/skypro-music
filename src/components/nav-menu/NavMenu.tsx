@@ -27,7 +27,9 @@ const NavMenu = () => {
               </Link>
             </li>
             <li className={s.menuItem}>
-              <button className={s.menuLink}>Войти</button>
+              <Link href="/signin" className={s.menuLink}>
+                Войти
+              </Link>
             </li>
           </ul>
         </div>
