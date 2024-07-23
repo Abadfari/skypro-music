@@ -20,7 +20,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(28, 28, 28, 0.5);
+  background: rgba(28, 28, 28, 1);
+  box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .barContent {
@@ -228,7 +229,7 @@
   grid-row: 2;
   grid-column: 2;
   grid-area: album;
-  min-width: 49px;
+  min-width: 200px;
 }
 
 .trackPlayAlbumLink {
@@ -274,4 +275,9 @@
   height: 13px;
   fill: transparent;
   stroke: #696969;
+}
+
+.currentTime {
+  display: flex;
+  flex-direction: row-reverse;
 }

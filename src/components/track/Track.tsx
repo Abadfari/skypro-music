@@ -1,9 +1,12 @@
+// TODO: сделать сдили для иконок текущщего трека
+
 import { FC } from "react";
 import s from "./Track.module.css";
 import { formatTrackTime } from "@/lib/formatTrackTime";
-
+import { useAppSelector } from "@/store/store";
 
 type Props = {
+  id: number;
   name: string;
   author: string;
   album: string;
@@ -12,20 +15,30 @@ type Props = {
 };
 
 const Track: FC<Props> = ({
+  id,
   name,
   author,
   album,
   duration_in_seconds,
   setCurrentTrack,
 }) => {
+  const { isPlaying, currentTrack } = useAppSelector((state) => state.playlist);
   return (
     <div onClick={setCurrentTrack} className={s.playlistItem}>
       <div className={s.playlistTrack}>
         <div className={s.trackTitle}>
           <div className={s.trackTitleImage}>
-            <svg className={s.trackTitleSvg}>
-              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-            </svg>
+            {currentTrack?.id === id ? (
+              isPlaying ? (
+                <div className={s.playingDot}></div>
+              ) : (
+                <div className={s.pauseDot}></div>
+              )
+            ) : (
+              <svg className={s.trackTitleSvg}>
+                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+              </svg>
+            )}
           </div>
           <div>
             <a className={s.trackTitleLink} href="http://">
