@@ -35,8 +35,4 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-
-
-<!-- TODO: СРОЧНО ДОДЕЛАТЬ СТИЛИ!!! -->
-
-<!-- TODO: подключить треки в компонент  -->
+<!-- TODO: поменять везде img на /img, и добить стили иконок сердчек и кнопку выйти в nav-menu -->

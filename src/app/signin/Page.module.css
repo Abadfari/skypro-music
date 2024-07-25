@@ -5,5 +5,9 @@
 }
 
 .errorText {
+  display: flex;
+  text-align:center;
+  align-items: center;
+  max-height: 5px;
   color: red
 }

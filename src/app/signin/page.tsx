@@ -5,9 +5,9 @@ import ModalButton from "@/components/modal-button/ModalButton";
 import ModalInput from "@/components/modal-input/ModalInput";
 import s from "./Page.module.css";
 import { ChangeEvent, useState } from "react";
-import { signIn } from "@/api/authApi";
+import { getToken, signIn } from "@/api/authApi";
 import { useAppDispatch } from "@/store/store";
-import { setUser } from "@/store/features/authSlice";
+import { setToken, setUser } from "@/store/features/authSlice";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -33,6 +33,9 @@ const SignIn = () => {
     signIn({ data: formData })
       .then((result) => {
         dispatch(setUser(result));
+        getToken({ data: formData }).then((result) => {
+          dispatch(setToken(result));
+        });
         router.push("/");
       })
       .catch((error) => {

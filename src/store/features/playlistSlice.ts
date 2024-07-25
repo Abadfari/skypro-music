@@ -12,7 +12,7 @@ export const getFavTracks = createAsyncThunk(
   "playlist/getFavoriteTracks",
   async (accessToken: string) => {
     const favoriteTracks = await getFavoriteTracks({ token: accessToken });
-    return favoriteTracks.data;
+    return favoriteTracks;
   }
 );
 
@@ -23,6 +23,7 @@ type PlaylistTrackType = {
   isShuffle: boolean;
   shuffledPlaylist: TrackType[];
   likedTracks: TrackType[];
+  initialTracks: TrackType[];
 };
 
 const initialState: PlaylistTrackType = {
@@ -32,6 +33,7 @@ const initialState: PlaylistTrackType = {
   isShuffle: false,
   shuffledPlaylist: [],
   likedTracks: [],
+  initialTracks: [],
 };
 
 const playlistSlice = createSlice({
@@ -87,16 +89,20 @@ const playlistSlice = createSlice({
     },
     dislikeTrack: (state, action: PayloadAction<TrackType>) => {
       state.likedTracks = state.likedTracks.filter(
-        (id) => id !== action.payload
+        (track) => track._id !== action.payload._id
       );
     },
     setLikedTracks: (state, action: PayloadAction<TrackType[]>) => {
       state.likedTracks = action.payload;
     },
+    setInitialTracks: (state, action: PayloadAction<TrackType[]>) => {
+      state.initialTracks = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
     builder.addCase(getFavTracks.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.likedTracks = action.payload;
     });
   },
@@ -112,5 +118,6 @@ export const {
   likeTrack,
   dislikeTrack,
   setLikedTracks,
+  setInitialTracks,
 } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

@@ -15,12 +15,16 @@ export async function signIn({
       }
     );
     const isResponseOk = response.ok;
+    const status = response.status;
     const result = await response.json();
     if (!isResponseOk) {
-      let error = Object.keys(result.data.errors)
-        .map((key) => result.data.errors[key].join(" "))
-        .join(" ");
-      throw new Error(error);
+      if (status === 412) {
+        let error = Object.keys(result.data.errors)
+          .map((key) => result.data.errors[key].join(" "))
+          .join(" ");
+        throw new Error(error);
+      }
+      throw new Error(result.message);
     }
     return result;
   } catch (error) {
@@ -45,12 +49,16 @@ export async function signUp({
       }
     );
     const isResponseOk = response.ok;
+    const status = response.status;
     const result = await response.json();
     if (!isResponseOk) {
-      let error = Object.keys(result.data.errors)
-        .map((key) => result.data.errors[key].join(" "))
-        .join(" ");
-      throw new Error(error);
+      if (status === 412) {
+        let error = Object.keys(result.data.errors)
+          .map((key) => result.data.errors[key].join(" "))
+          .join(" ");
+        throw new Error(error);
+      }
+      throw new Error(result.message);
     }
     return result;
   } catch (error) {

@@ -67,7 +67,7 @@ const SignUp = () => {
           onChange={onChange}
           value={formData.username}
         />
-        <div>{error}</div>
+        <div style={{ color: "red" }}>{error}</div>
         <ModalButton type="primary" onClick={userSignUp}>
           Зарегистрироваться
         </ModalButton>
