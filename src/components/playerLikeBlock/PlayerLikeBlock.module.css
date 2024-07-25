@@ -18,19 +18,15 @@
   }
 
   .trackPlayLikeSvg {
-    width: 14px;
-    height: 12px;
+    width: 16px;
+    height: 14px;
     fill: transparent;
     stroke: #696969;
   }
 
-  .trackPlayDislike {
-    margin-left: 28.5px;
-  }
-
   .trackPlayDislikeSvg {
-    width: 14.34px;
-    height: 13px;
+    width: 16px;
+    height: 14px;
     fill: transparent;
     stroke: #696969;
   }

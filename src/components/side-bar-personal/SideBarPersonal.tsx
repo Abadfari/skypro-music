@@ -24,7 +24,7 @@ const SideBarPersonal = () => {
       <p className={s.sidebarPersonalName}>{username}</p>
       <div className={s.sidebarIcon} onClick={logout}>
         <svg>
-          <use xlinkHref="img/icon/sprite.svg#logout"></use>
+          <use xlinkHref="/img/icon/sprite.svg#logout"></use>
         </svg>
       </div>
     </div>

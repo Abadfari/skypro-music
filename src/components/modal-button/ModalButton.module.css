@@ -15,6 +15,14 @@
   font-size: 18px;
 }
 
+.primary:hover {
+  background-color: #3F007D;
+}
+
+.primary:active {
+  background-color: #271A58;
+}
+
 .primary {
   background-color: #580ea2;
   color: #ffffff;
@@ -24,4 +32,12 @@
   background-color: transparent;
   border: 1px solid #d0cece;
   color: #000000;
+}
+
+.secondary:hover {
+  background-color: #F4F5F6;
+}
+
+.secondary:active {
+  background-color: #D0CECE;
 }

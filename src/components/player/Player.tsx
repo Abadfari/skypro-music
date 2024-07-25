@@ -98,21 +98,21 @@ const Player = () => {
             <div className={s.playerControls}>
               <div className={s.playerBtnPrev} onClick={handlePrevTrack}>
                 <svg className={s.playerBtnPrevSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-prev"></use>
                 </svg>
               </div>
               <div onClick={playTrack} className={clsx(s.playerBtnPlay, s.btn)}>
                 <svg className={s.playerBtnPlaySvg}>
                   {!isPlaying ? (
-                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-play"></use>
                   ) : (
-                    <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-pause"></use>
                   )}
                 </svg>
               </div>
               <div className={s.playerBtnNext} onClick={handleNextTrack}>
                 <svg className={s.playerBtnNextSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
+                  <use xlinkHref="/img/icon/sprite.svg#icon-next"></use>
                 </svg>
               </div>
               <div
@@ -121,9 +121,9 @@ const Player = () => {
               >
                 <svg className={s.playerBtnRepeatSvg}>
                   {!isLoop ? (
-                    <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-repeat"></use>
                   ) : (
-                    <use xlinkHref="img/icon/sprite.svg#icon-repeat-active"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-repeat-active"></use>
                   )}
                 </svg>
               </div>
@@ -132,7 +132,11 @@ const Player = () => {
                 onClick={handleShuffleTrack}
               >
                 <svg className={s.playerBtnShuffleSvg}>
-                  <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
+                  {!isLoop ? (
+                    <use xlinkHref="/img/icon/sprite.svg#icon-shuffle"></use>
+                  ) : (
+                    <use xlinkHref="/img/icon/sprite.svg#icon-shuffle-active"></use>
+                  )}
                 </svg>
               </div>
             </div>
@@ -141,7 +145,7 @@ const Player = () => {
               <div className={s.trackPlayContain}>
                 <div className={s.trackPlayImage}>
                   <svg className={s.trackPlaySvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
                   </svg>
                 </div>
                 <div className={s.trackPlayAuthor}>

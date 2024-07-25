@@ -12,14 +12,18 @@ const Playlist = ({ tracks }: { tracks: TrackType[] }) => {
   }
   return (
     <div className={s.contentPlaylist}>
-      {tracks?.map((track, index) => (
-        <Track
-          track={track}
-          setCurrentTrack={() => handleTrack(track)}
-          {...track}
-          key={index}
-        />
-      ))}
+      {tracks.length ? (
+        tracks?.map((track, index) => (
+          <Track
+            track={track}
+            setCurrentTrack={() => handleTrack(track)}
+            {...track}
+            key={index}
+          />
+        ))
+      ) : (
+        <span className={s.undefined}>Треки не найдены</span>
+      )}
     </div>
   );
 };

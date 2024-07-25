@@ -1,4 +1,3 @@
-import Burger from "../burger/Burger";
 import Logo from "../logo/Logo";
 import NavMenu from "../nav-menu/NavMenu";
 import s from "./Nav.module.css";

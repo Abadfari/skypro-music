@@ -12,7 +12,7 @@ const PlaylistContent = ({ tracks }: { tracks: TrackType[] }) => {
         <div className={clsx(s.playlistTitleCol, s.col03)}>Альбом</div>
         <div className={clsx(s.playlistTitleCol, s.col04)}>
           <svg className={s.playlistTitleSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
           </svg>
         </div>
       </div>

@@ -59,12 +59,27 @@
 .filterList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 28px;
   overflow-y: scroll;
   height: 100%;
 }
 
-.filterListItem:hover {
+.filterListItem:hover,
+.active {
   text-decoration: underline #ad61ff;
   color: #ad61ff;
+}
+
+.filterLength {
+  width: 26px;
+  height: 26px;
+  background: #ad61ff;
+  border-radius: 50%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: -8px;
+  top: -8px;
+
 }

@@ -24,6 +24,13 @@ type PlaylistTrackType = {
   shuffledPlaylist: TrackType[];
   likedTracks: TrackType[];
   initialTracks: TrackType[];
+  filterOptions: {
+    genres: string[];
+    authors: string[];
+    order: string;
+    searchValue: string;
+  };
+  filteredPlaylist: TrackType[];
 };
 
 const initialState: PlaylistTrackType = {
@@ -34,6 +41,13 @@ const initialState: PlaylistTrackType = {
   shuffledPlaylist: [],
   likedTracks: [],
   initialTracks: [],
+  filterOptions: {
+    genres: [],
+    authors: [],
+    order: "",
+    searchValue: "",
+  },
+  filteredPlaylist: [],
 };
 
 const playlistSlice = createSlice({
@@ -97,6 +111,67 @@ const playlistSlice = createSlice({
     },
     setInitialTracks: (state, action: PayloadAction<TrackType[]>) => {
       state.initialTracks = action.payload;
+      state.filteredPlaylist = action.payload;
+    },
+    setFilter: (
+      state,
+      action: PayloadAction<{
+        genres?: string[];
+        authors?: string[];
+        order?: string;
+        searchValue?: string;
+      }>
+    ) => {
+      const { genres, authors, order, searchValue } = action.payload;
+      state.filterOptions.authors = authors ?? state.filterOptions.authors;
+      state.filterOptions.genres = genres ?? state.filterOptions.genres;
+      state.filterOptions.order = order ?? state.filterOptions.order;
+      state.filterOptions.searchValue =
+        typeof searchValue === "string"
+          ? searchValue
+          : state.filterOptions.searchValue;
+      let filteredPlaylist = [...state.initialTracks];
+      if (state.filterOptions.genres.length) {
+        filteredPlaylist = filteredPlaylist.filter((track) =>
+          state.filterOptions.genres.includes(track.genre)
+        );
+      }
+      if (state.filterOptions.authors.length) {
+        filteredPlaylist = filteredPlaylist.filter((track) =>
+          state.filterOptions.authors.includes(track.author)
+        );
+      }
+      if (state.filterOptions.searchValue) {
+        filteredPlaylist = filteredPlaylist.filter(
+          (track) =>
+            track.name
+              .toLowerCase()
+              .includes(state.filterOptions.searchValue.toLowerCase()) ||
+            track.author
+              .toLowerCase()
+              .includes(state.filterOptions.searchValue.toLowerCase())
+        );
+      }
+      switch (order) {
+        case "Сначала новые":
+          filteredPlaylist.sort(
+            (a, b) =>
+              new Date(b.release_date).getTime() -
+              new Date(a.release_date).getTime()
+          );
+          break;
+        case "Сначала старые":
+          filteredPlaylist.sort(
+            (a, b) =>
+              new Date(a.release_date).getTime() -
+              new Date(b.release_date).getTime()
+          );
+          break;
+
+        default:
+          break;
+      }
+      state.filteredPlaylist = filteredPlaylist;
     },
   },
 
@@ -119,5 +194,6 @@ export const {
   dislikeTrack,
   setLikedTracks,
   setInitialTracks,
+  setFilter,
 } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

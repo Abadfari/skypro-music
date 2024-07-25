@@ -10,7 +10,7 @@ export async function getAllTracks() {
     }
     return result.data;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }
 
@@ -32,7 +32,7 @@ export async function getFavoriteTracks({ token }: { token: string }) {
     }
     return result.data;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }
 
@@ -48,7 +48,9 @@ export async function getCategoryTracks({ id }: { id: string }) {
     }
     return { items: result.data.items, name: result.data.name };
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    } else throw new Error("Неизвестная ошибка");
   }
 }
 
@@ -77,7 +79,7 @@ export async function likeTrack({
     }
     return result.data;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }
 
@@ -107,6 +109,6 @@ export async function dislikeTrack({
     }
     return result.data;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }
