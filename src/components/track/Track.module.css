@@ -117,10 +117,16 @@
   margin-right: 17px;
   transition: 0.5s ease;
   cursor: pointer;
+  stroke: #696969;
 }
 
 .trackTimeSvg:hover {
   transform: scale(1.2);
+  stroke: #ACACAC;
+}
+
+.trackTimeSvg:active {
+  stroke: #FFFFFF;
 }
 
 .trackTimeText {
