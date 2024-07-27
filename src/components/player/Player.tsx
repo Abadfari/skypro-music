@@ -13,6 +13,7 @@ import {
   setPrevTrack,
   setShuffle,
 } from "@/store/features/playlistSlice";
+import PlayerLikeBlock from "../playerLikeBlock/PlayerLikeBlock";
 
 const Player = () => {
   const audioRef = useRef<null | HTMLAudioElement>(null);
@@ -74,6 +75,10 @@ const Player = () => {
   useEffect(() => {
     isPlaying ? audioRef.current?.play() : audioRef.current?.pause();
   }, [isPlaying, currentTrack]);
+
+  if (!currentTrack) {
+    return null;
+  }
   return (
     <div className={s.bar}>
       <div className={s.barContent}>
@@ -151,18 +156,7 @@ const Player = () => {
                 </div>
               </div>
 
-              <div className={s.trackPlayLikeDis}>
-                <div className={clsx(s.trackPlayLike, s.btnIcon)}>
-                  <svg className={s.trackPlayLikeSvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                  </svg>
-                </div>
-                <div className={clsx(s.trackPlayDislike, s.btnIcon)}>
-                  <svg className={s.trackPlayDislikeSvg}>
-                    <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
-                  </svg>
-                </div>
-              </div>
+              <PlayerLikeBlock track={currentTrack} />
             </div>
           </div>
           <VolumeProgress audio={audioRef} />

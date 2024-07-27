@@ -1,6 +1,20 @@
+import { getFavoriteTracks } from "@/api/tracksApi";
 import { shuffleArray } from "@/lib/shuffleTracks";
 import { TrackType } from "@/types";
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  current,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+
+export const getFavTracks = createAsyncThunk(
+  "playlist/getFavoriteTracks",
+  async (accessToken: string) => {
+    const favoriteTracks = await getFavoriteTracks({ token: accessToken });
+    return favoriteTracks;
+  }
+);
 
 type PlaylistTrackType = {
   currentTrack: null | TrackType;
@@ -8,6 +22,8 @@ type PlaylistTrackType = {
   playlist: TrackType[];
   isShuffle: boolean;
   shuffledPlaylist: TrackType[];
+  likedTracks: TrackType[];
+  initialTracks: TrackType[];
 };
 
 const initialState: PlaylistTrackType = {
@@ -16,6 +32,8 @@ const initialState: PlaylistTrackType = {
   playlist: [],
   isShuffle: false,
   shuffledPlaylist: [],
+  likedTracks: [],
+  initialTracks: [],
 };
 
 const playlistSlice = createSlice({
@@ -37,7 +55,7 @@ const playlistSlice = createSlice({
         ? state.shuffledPlaylist
         : state.playlist;
       const currentId = playlist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       const nextTrack = playlist[currentId + 1];
       if (nextTrack) {
@@ -51,7 +69,7 @@ const playlistSlice = createSlice({
         ? state.shuffledPlaylist
         : state.playlist;
       const currentId = playlist.findIndex(
-        (track) => track.id === state.currentTrack?.id
+        (track) => track._id === state.currentTrack?._id
       );
       const prevTrack = playlist[currentId - 1];
       if (prevTrack) {
@@ -64,6 +82,29 @@ const playlistSlice = createSlice({
         state.shuffledPlaylist = shuffleArray([...state.playlist]);
       }
     },
+    likeTrack: (state, action: PayloadAction<TrackType>) => {
+      if (!state.likedTracks.includes(action.payload)) {
+        state.likedTracks.push(action.payload);
+      }
+    },
+    dislikeTrack: (state, action: PayloadAction<TrackType>) => {
+      state.likedTracks = state.likedTracks.filter(
+        (track) => track._id !== action.payload._id
+      );
+    },
+    setLikedTracks: (state, action: PayloadAction<TrackType[]>) => {
+      state.likedTracks = action.payload;
+    },
+    setInitialTracks: (state, action: PayloadAction<TrackType[]>) => {
+      state.initialTracks = action.payload;
+    },
+  },
+
+  extraReducers: (builder) => {
+    builder.addCase(getFavTracks.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.likedTracks = action.payload;
+    });
   },
 });
 
@@ -74,5 +115,9 @@ export const {
   setNextTrack,
   setPrevTrack,
   setShuffle,
+  likeTrack,
+  dislikeTrack,
+  setLikedTracks,
+  setInitialTracks,
 } = playlistSlice.actions;
 export const playlistReducer = playlistSlice.reducer;

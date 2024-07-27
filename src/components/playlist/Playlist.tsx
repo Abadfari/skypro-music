@@ -12,8 +12,9 @@ const Playlist = ({ tracks }: { tracks: TrackType[] }) => {
   }
   return (
     <div className={s.contentPlaylist}>
-      {tracks.map((track, index) => (
+      {tracks?.map((track, index) => (
         <Track
+          track={track}
           setCurrentTrack={() => handleTrack(track)}
           {...track}
           key={index}

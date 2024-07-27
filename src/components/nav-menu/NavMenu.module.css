@@ -18,3 +18,16 @@
   font-size: 16px;
   line-height: 24px;
 }
+
+.buttonLogout {
+  background-color:#1C1C1C;
+  border: none;
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0.001em;
+  text-align: left;
+
+}

@@ -35,6 +35,10 @@ body {
   color: #ffffff;
 }
 
+.button, input, a {
+  font-family: inherit;
+}
+
 /*  */
 
 /* .wrapper {

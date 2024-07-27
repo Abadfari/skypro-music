@@ -113,6 +113,20 @@
   stroke: #696969;
 }
 
+.trackTimeSvg:hover {
+  border: #ACACAC
+}
+
+.trackTimeSvg:active {
+  stroke: #ACACAC
+}
+
+.trackTime {
+  display: flex;
+  width: 70px;
+}
+
+
 .trackTimeText {
   font-style: normal;
   font-weight: 400;

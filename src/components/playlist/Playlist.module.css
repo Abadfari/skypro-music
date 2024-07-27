@@ -7,8 +7,10 @@
   -ms-flex-direction: column;
   flex-direction: column;
   overflow: auto; /* Добавляет вертикальный скроллбар при необходимости */
-  max-height: 600px; /* Устанавливает максимальную высоту блока, чтобы появлялся скроллбар */
+  max-height: 470px; /* Устанавливает максимальную высоту блока, чтобы появлялся скроллбар */
   padding-right: 10px; /* Добавляет небольшой отступ справа, чтобы не перекрывать содержимое */
+  box-shadow: inset 0px -10px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .contentPlaylist::-webkit-scrollbar {
