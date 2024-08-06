@@ -1,5 +1,3 @@
-// TODO: сделать сдили для иконок текущщего трека
-
 import { FC } from "react";
 import s from "./Track.module.css";
 import { formatTrackTime } from "@/lib/formatTrackTime";
@@ -46,18 +44,18 @@ const Track: FC<Props> = ({
             )}
           </div>
           <div>
-            <a className={s.trackTitleLink} href="http://">
+            <a className={s.trackTitleLink} href="#">
               {name} <span className={s.trackTitleSpan}></span>
             </a>
           </div>
         </div>
         <div className={s.trackAuthor}>
-          <a className={s.trackAuthorLink} href="http://">
+          <a className={s.trackAuthorLink} href="#">
             {author}
           </a>
         </div>
         <div className={s.trackAlbum}>
-          <a className={s.trackAlbumLink} href="http://">
+          <a className={s.trackAlbumLink} href="#">
             {album}
           </a>
         </div>

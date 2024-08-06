@@ -28,7 +28,7 @@ export async function signIn({
     }
     return result;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }
 
@@ -62,7 +62,7 @@ export async function signUp({
     }
     return result;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }
 
@@ -89,6 +89,6 @@ export async function getToken({
     }
     return result;
   } catch (error) {
-    throw new Error(error.message);
+    if (error instanceof Error) throw new Error(error.message);
   }
 }

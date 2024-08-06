@@ -11,14 +11,14 @@ const PlayerLikeBlock = ({ track }: { track: TrackType }) => {
     <div className={s.trackPlayLikeDis} onClick={handleLike}>
       {isLiked ? (
         <svg className={s.trackPlayLikeSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+          <use xlinkHref="/img/icon/sprite.svg#icon-like"></use>
         </svg>
       ) : (
         <svg className={s.trackPlayDislikeSvg}>
-          <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+          <use xlinkHref="/img/icon/sprite.svg#icon-dislike"></use>
         </svg>
       )}
-      <div className={clsx(s.trackPlayLike, s.btnIcon)}></div>
+      {/* <div className={clsx(s.trackPlayLike, s.btnIcon)}></div> */}
     </div>
   );
 };

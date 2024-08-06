@@ -19,7 +19,7 @@ const VolumeProgress = ({ audio }: Props) => {
       <div className={s.volumeContent}>
         <div className={s.volumeImage}>
           <svg className={s.volumeSvg}>
-            <use xlinkHref="img/icon/sprite.svg#icon-volume"></use>
+            <use xlinkHref="/img/icon/sprite.svg#icon-volume"></use>
           </svg>
         </div>
         <div className={clsx(s.volumeProgress, s.btn)}>

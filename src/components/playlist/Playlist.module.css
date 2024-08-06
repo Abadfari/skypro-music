@@ -9,8 +9,6 @@
   overflow: auto; /* Добавляет вертикальный скроллбар при необходимости */
   max-height: 470px; /* Устанавливает максимальную высоту блока, чтобы появлялся скроллбар */
   padding-right: 10px; /* Добавляет небольшой отступ справа, чтобы не перекрывать содержимое */
-  box-shadow: inset 0px -10px 10px rgba(0, 0, 0, 0.1);
-
 }
 
 .contentPlaylist::-webkit-scrollbar {
@@ -24,4 +22,12 @@
 .contentPlaylist::-webkit-scrollbar-thumb {
   background-color: #4b4949; /* цвет ползунка скроллбара */
 
+}
+
+.undefined{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  font-size: 18px;
 }

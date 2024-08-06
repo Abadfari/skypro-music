@@ -7,6 +7,9 @@ type FilterListType = {
   list: string[];
   handleFilterClick: (newFilter: string) => void;
   isOpened: boolean;
+  type: string;
+  handleActiveFilter: (item: string) => void;
+  filter: string[] | string;
 };
 
 const FilterList: FC<FilterListType> = ({
@@ -14,9 +17,15 @@ const FilterList: FC<FilterListType> = ({
   title,
   list,
   isOpened,
+  handleActiveFilter,
+  filter,
+  type,
 }) => {
   return (
     <div className={s.wrapperBtn}>
+      {type !== "order" && filter.length ? (
+        <div className={s.filterLength}>{filter.length}</div>
+      ) : null}
       <div
         onClick={() => handleFilterClick(title)}
         className={clsx(s.filterButton, s.btnText, {
@@ -29,7 +38,18 @@ const FilterList: FC<FilterListType> = ({
         <div className={s.filterListStyles}>
           <ul className={s.filterList}>
             {list.map((item) => (
-              <li className={s.filterListItem} key={item}>{item}</li>
+              <li
+                className={clsx(s.filterListItem, {
+                  [s.active]:
+                    typeof filter === "string"
+                      ? item === filter
+                      : filter?.includes(item),
+                })}
+                key={item}
+                onClick={() => handleActiveFilter(item)}
+              >
+                {item}
+              </li>
             ))}
           </ul>
         </div>
